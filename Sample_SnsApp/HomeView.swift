@@ -9,7 +9,15 @@ import SwiftUI
 
 struct HomeView: View {
     var body: some View {
-        Text("HomeView")
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(0..<2, id: \.self) { _ in
+                    PostDetailView()
+                        .frame(width: UIApplication.shared.screen.bounds.width, height: UIApplication.shared.screen.bounds.height)
+                }
+            }
+        }
+        .scrollTargetBehavior(.paging)
     }
 }
 
