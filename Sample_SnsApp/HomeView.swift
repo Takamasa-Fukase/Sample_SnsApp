@@ -24,6 +24,7 @@ struct HomeView: View {
             }
             .scrollTargetBehavior(.paging)
         })
+        .ignoresSafeArea(edges: [.top])
     }
     
     func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {
