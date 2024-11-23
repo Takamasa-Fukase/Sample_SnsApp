@@ -32,9 +32,23 @@ struct MyPageView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.gray)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("MyPage")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        
+                    }, label: {
+                        Image(systemName: "person")
+                            .resizable()
+                            .frame(width: 28, height: 28)
+                    })
+                }
+            }
+            .toolbarBackground(.background, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
-        .tint(.clear)
-        .navigationTitle("MyPage")
+        .tint(Color(.label))
     }
 }
 
