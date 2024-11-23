@@ -11,13 +11,14 @@ struct PostDetailView: View {
     var backgroundColor: Color
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
             HStack(alignment: .bottom) {
                 descriptionView
                 rightButtonsView
                     .padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 4))
             }
+            Spacer().frame(height: 16)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.all, 12)
