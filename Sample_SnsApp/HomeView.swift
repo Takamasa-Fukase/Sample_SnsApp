@@ -31,8 +31,8 @@ struct HomeView: View {
             LazyVStack(spacing: 0, content: {
                 ForEach(colors, id: \.self) { color in
                     PostDetailView(backgroundColor: color)
-                        .frame(width: geometry.size.width)
-                        .frame(maxHeight: .infinity)
+                        .frame(width: geometry.size.width,
+                               height: geometry.size.height)
                 }
             })
         }
