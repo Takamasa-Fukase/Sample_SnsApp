@@ -28,7 +28,7 @@ struct PostDetailView: View {
     var descriptionView: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: "person.circle")
+                Image(systemName: "person.circle.fill")
                     .resizable()
                     .frame(width: 40, height: 40)
                 VStack(alignment: .leading) {
