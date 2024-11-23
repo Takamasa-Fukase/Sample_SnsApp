@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     init() {
+        let naviBarAppearance = UINavigationBarAppearance()
+        naviBarAppearance.configureWithTransparentBackground()
+        naviBarAppearance.backgroundColor = .systemBackground
+        UINavigationBar.appearance().standardAppearance = naviBarAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
         UITabBar.appearance().backgroundColor = .systemBackground
         UITabBar.appearance().unselectedItemTintColor = .secondaryLabel
     }
