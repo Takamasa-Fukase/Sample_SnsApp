@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PostDetailView: View {
+    var backgroundColor: Color
+    
     var body: some View {
         VStack {
             Spacer()
@@ -20,7 +22,7 @@ struct PostDetailView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.all, 12)
         .foregroundStyle(.white)
-        .background(Color(.blue))
+        .background(backgroundColor)
     }
     
     var descriptionView: some View {
@@ -81,5 +83,5 @@ struct PostDetailView: View {
 }
 
 #Preview {
-    PostDetailView()
+    PostDetailView(backgroundColor: .blue)
 }
