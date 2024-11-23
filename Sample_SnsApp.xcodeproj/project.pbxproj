@@ -14,6 +14,8 @@
 		BC5097FF2CF18F860080F344 /* Sample_SnsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5097FE2CF18F860080F344 /* Sample_SnsAppTests.swift */; };
 		BC5098092CF18F860080F344 /* Sample_SnsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5098082CF18F860080F344 /* Sample_SnsAppUITests.swift */; };
 		BC50980B2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50980A2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift */; };
+		BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB79FE2CF192EF0018649D /* HomeView.swift */; };
+		BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A002CF1945B0018649D /* PostDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		BC5098042CF18F860080F344 /* Sample_SnsAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Sample_SnsAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5098082CF18F860080F344 /* Sample_SnsAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_SnsAppUITests.swift; sourceTree = "<group>"; };
 		BC50980A2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_SnsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BCFB79FE2CF192EF0018649D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BCFB7A002CF1945B0018649D /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				BC5097ED2CF18F850080F344 /* Sample_SnsAppApp.swift */,
 				BC5097EF2CF18F850080F344 /* ContentView.swift */,
+				BCFB79FE2CF192EF0018649D /* HomeView.swift */,
+				BCFB7A002CF1945B0018649D /* PostDetailView.swift */,
 				BC5097F12CF18F860080F344 /* Assets.xcassets */,
 				BC5097F32CF18F860080F344 /* Preview Content */,
 			);
@@ -257,8 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */,
 				BC5097F02CF18F850080F344 /* ContentView.swift in Sources */,
 				BC5097EE2CF18F850080F344 /* Sample_SnsAppApp.swift in Sources */,
+				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
