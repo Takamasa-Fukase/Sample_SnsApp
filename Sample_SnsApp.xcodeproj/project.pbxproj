@@ -16,7 +16,6 @@
 		BC50980B2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50980A2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift */; };
 		BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB79FE2CF192EF0018649D /* HomeView.swift */; };
 		BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A002CF1945B0018649D /* PostDetailView.swift */; };
-		BCFB7A032CF1A3120018649D /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A022CF1A3120018649D /* UIApplication+Extension.swift */; };
 		BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A042CF1AD780018649D /* MyPageView.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,7 +49,6 @@
 		BC50980A2CF18F860080F344 /* Sample_SnsAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sample_SnsAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BCFB79FE2CF192EF0018649D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BCFB7A002CF1945B0018649D /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
-		BCFB7A022CF1A3120018649D /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		BCFB7A042CF1AD780018649D /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,7 +105,6 @@
 				BCFB79FE2CF192EF0018649D /* HomeView.swift */,
 				BCFB7A002CF1945B0018649D /* PostDetailView.swift */,
 				BCFB7A042CF1AD780018649D /* MyPageView.swift */,
-				BCFB7A022CF1A3120018649D /* UIApplication+Extension.swift */,
 				BC5097F12CF18F860080F344 /* Assets.xcassets */,
 				BC5097F32CF18F860080F344 /* Preview Content */,
 			);
@@ -272,7 +269,6 @@
 				BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */,
 				BC5097F02CF18F850080F344 /* ContentView.swift in Sources */,
 				BC5097EE2CF18F850080F344 /* Sample_SnsAppApp.swift in Sources */,
-				BCFB7A032CF1A3120018649D /* UIApplication+Extension.swift in Sources */,
 				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
 				BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */,
 			);
