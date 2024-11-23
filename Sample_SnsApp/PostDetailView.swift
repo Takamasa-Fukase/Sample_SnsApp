@@ -61,22 +61,22 @@ struct PostDetailView: View {
     }
     
     func rightCountButton(imageName: String, count: Int? = nil, action: @escaping (() -> Void)) -> some View {
-        Button(action: {
-            action()
-        }, label: {
-            VStack {
+        VStack {
+            Button(action: {
+                action()
+            }, label: {
                 Image(systemName: imageName)
                     .resizable()
                     .frame(width: 28, height: 28)
-                if let count = count {
-                    Text("\(count)")
-                        .font(.system(size: 12))
-                }else {
-                    Spacer()
-                        .frame(height: 12)
-                }
+            })
+            if let count = count {
+                Text("\(count)")
+                    .font(.system(size: 12))
+            }else {
+                Spacer()
+                    .frame(height: 12)
             }
-        })
+        }
     }
 }
 
