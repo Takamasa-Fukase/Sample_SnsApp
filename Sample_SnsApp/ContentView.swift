@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTabIndex: Int = 0
+    
     init() {
         let naviBarAppearance = UINavigationBarAppearance()
         naviBarAppearance.configureWithTransparentBackground()
@@ -19,19 +21,26 @@ struct ContentView: View {
     }
     
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTabIndex) {
             Group {
                 HomeView()
                     .tabItem {
-                        Image(systemName: "house")
-                        Text("Home")
+                        Label("Home", systemImage: selectedTabIndex == 0 ? "house.fill" : "house")
+                            .environment(\.symbolVariants, .none)
                     }
+                    .tag(0)
+                PostCreateTopView()
+                    .tabItem {
+                        Label("Create", systemImage: selectedTabIndex == 1 ? "plus.app.fill" : "plus.app")
+                            .environment(\.symbolVariants, .none)
+                    }
+                    .tag(1)
                 MyPageView()
                     .tabItem {
-                        Image(systemName: "person")
-                        Text("You")
+                        Label("You", systemImage: selectedTabIndex == 2 ? "person.fill" : "person")
+                            .environment(\.symbolVariants, .none)
                     }
-                    .tint(.green)
+                    .tag(2)
             }
             // MEMO: SwiftUI専用の新しい下記のAPIを使うべきだが、非選択のTabBarのtintColorを設定するすべがまだ無く、
             // 併用するとUITabBar.appearanceが無効になるので両方設定したい場合は、
