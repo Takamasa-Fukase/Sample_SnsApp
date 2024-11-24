@@ -17,6 +17,7 @@
 		BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB79FE2CF192EF0018649D /* HomeView.swift */; };
 		BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A002CF1945B0018649D /* PostDetailView.swift */; };
 		BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A042CF1AD780018649D /* MyPageView.swift */; };
+		BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A062CF33C950018649D /* PostCreateTopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		BCFB79FE2CF192EF0018649D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		BCFB7A002CF1945B0018649D /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		BCFB7A042CF1AD780018649D /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		BCFB7A062CF33C950018649D /* PostCreateTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateTopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				BC5097EF2CF18F850080F344 /* ContentView.swift */,
 				BCFB79FE2CF192EF0018649D /* HomeView.swift */,
 				BCFB7A002CF1945B0018649D /* PostDetailView.swift */,
+				BCFB7A062CF33C950018649D /* PostCreateTopView.swift */,
 				BCFB7A042CF1AD780018649D /* MyPageView.swift */,
 				BC5097F12CF18F860080F344 /* Assets.xcassets */,
 				BC5097F32CF18F860080F344 /* Preview Content */,
@@ -270,6 +273,7 @@
 				BC5097F02CF18F850080F344 /* ContentView.swift in Sources */,
 				BC5097EE2CF18F850080F344 /* Sample_SnsAppApp.swift in Sources */,
 				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
+				BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */,
 				BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
