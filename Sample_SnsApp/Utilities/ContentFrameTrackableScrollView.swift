@@ -1,5 +1,5 @@
 //
-//  ScrollContentFrameTracker.swift
+//  ContentFrameTrackableScrollView.swift
 //  Sample_SnsApp
 //
 //  Created by ウルトラ深瀬 on 25/11/24.
