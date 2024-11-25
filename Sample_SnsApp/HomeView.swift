@@ -16,6 +16,7 @@ struct HomeView: View {
             GeometryReader(content: { geometry in
                 ContentFrameTrackableScrollView(
                     scrollDirections: .horizontal,
+                    showsIndicator: false,
                     content: {
                         HStack(spacing: 0) {
                             ForEach(0..<2, id: \.self) { id in
@@ -89,7 +90,10 @@ struct HomeView: View {
     }
     
     private func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {
-        return ScrollView(.vertical) {
+        return ScrollView(
+            .vertical,
+            showsIndicators: false
+        ) {
             LazyVStack(spacing: 0, content: {
                 ForEach(colors, id: \.self) { color in
                     PostDetailView(backgroundColor: color)
