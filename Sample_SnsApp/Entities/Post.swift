@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Hashable {
+struct Post: Identifiable {
     let id: Int
     let userId: Int
     let user: User

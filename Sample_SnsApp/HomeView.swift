@@ -124,7 +124,7 @@ struct HomeView: View {
             showsIndicators: false
         ) {
             LazyVStack(spacing: 0, content: {
-                ForEach(posts, id: \.self) { post in
+                ForEach(posts) { post in
                     PostDetailView(post: post)
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
