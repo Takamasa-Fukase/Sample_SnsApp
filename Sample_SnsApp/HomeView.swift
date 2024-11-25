@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    struct FramePreferenceKey: PreferenceKey {
-        typealias Value = [CGRect]
-        static var defaultValue: [CGRect] = [CGRect()]
-        static func reduce(value: inout [CGRect], nextValue: () -> [CGRect]) {
-            value.append(contentsOf: nextValue())
-        }
-    }
-    
     private let colors: [Color] = [.orange, .yellow, .green, .blue, .purple, .pink, .brown]
-    @State private var frame = CGRect()
+    @State private var topTabButtonAlpha: (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) = (0.0, 0.0)
     
     var body: some View {
         NavigationStack {
@@ -31,6 +23,13 @@ struct HomeView: View {
                             )
                         }
                     }
+                    .background {
+                        GeometryReader { geometry in
+                            Color.clear.onChange(of: geometry.frame(in: .global)) { _, newFrame in
+                                topTabButtonAlpha = topTabButtonAlpha(frame: newFrame)
+                            }
+                        }
+                    }
                 }
                 .scrollTargetBehavior(.paging)
                 .toolbar {
@@ -42,7 +41,7 @@ struct HomeView: View {
                                 .font(.system(size: 14, weight: .medium))
                         })
                         .frame(width: 84, height: 32)
-                        .background(.white.opacity(0.3))
+                        .background(.white.opacity(topTabButtonAlpha.recommendedButtonAlpha))
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     ToolbarItem(placement: .topBarLeading) {
@@ -56,7 +55,7 @@ struct HomeView: View {
                                 .font(.system(size: 14, weight: .medium))
                         })
                         .frame(width: 92, height: 32)
-                        .background(.white.opacity(0.3))
+                        .background(.white.opacity(topTabButtonAlpha.followingButtonAlpha))
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
                     ToolbarItem(placement: .topBarTrailing) {
@@ -76,7 +75,7 @@ struct HomeView: View {
         .tint(Color(.label))
     }
     
-    func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {
+    private func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {
         return ScrollView(.vertical) {
             LazyVStack(spacing: 0, content: {
                 ForEach(colors, id: \.self) { color in
@@ -87,6 +86,14 @@ struct HomeView: View {
             })
         }
         .scrollTargetBehavior(.paging)
+    }
+    
+    private func topTabButtonAlpha(frame: CGRect) -> (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) {
+        let scrollProgress = frame.minX / (frame.width / 2)
+        let maxButtonColorAlpha = 0.3
+        let recommendedButtonAlpha = -(-1 - scrollProgress) * maxButtonColorAlpha
+        let followingButtonAlpha = -(scrollProgress * maxButtonColorAlpha)
+        return (recommendedButtonAlpha: recommendedButtonAlpha, followingButtonAlpha: followingButtonAlpha)
     }
 }
 
