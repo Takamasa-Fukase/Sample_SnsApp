@@ -25,6 +25,7 @@
 		BCFB7A142CF462980018649D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A132CF462980018649D /* Notification.swift */; };
 		BCFB7A162CF4629D0018649D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A152CF4629D0018649D /* Post.swift */; };
 		BCFB7A182CF465000018649D /* MockDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A172CF465000018649D /* MockDataSource.swift */; };
+		BCFB7A1A2CF473F20018649D /* NetworkImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A192CF473F10018649D /* NetworkImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		BCFB7A132CF462980018649D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		BCFB7A152CF4629D0018649D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		BCFB7A172CF465000018649D /* MockDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSource.swift; sourceTree = "<group>"; };
+		BCFB7A192CF473F10018649D /* NetworkImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BCFB7A0C2CF44F470018649D /* ContentFrameTrackableScrollView.swift */,
+				BCFB7A192CF473F10018649D /* NetworkImageView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				BCFB7A0D2CF44F470018649D /* ContentFrameTrackableScrollView.swift in Sources */,
 				BCFB7A182CF465000018649D /* MockDataSource.swift in Sources */,
 				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
+				BCFB7A1A2CF473F20018649D /* NetworkImageView.swift in Sources */,
 				BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */,
 				BCFB7A092CF42E830018649D /* View+Extension.swift in Sources */,
 				BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */,
