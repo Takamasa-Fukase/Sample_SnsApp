@@ -35,45 +35,21 @@ struct HomeView: View {
                     )
                     .scrollTargetBehavior(.paging)
                     .toolbar {
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button(action: {
+                        toolBarContent(
+                            onTapRecommenedButton: {
                                 withAnimation {
                                     scrollProxy.scrollTo(0)
                                 }
-                            }, label: {
-                                Text("おすすめ")
-                                    .font(.system(size: 14, weight: .medium))
-                            })
-                            .frame(width: 84, height: 32)
-                            .background(.white.opacity(topTabButtonAlpha.recommendedButtonAlpha))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
-                        ToolbarItem(placement: .topBarLeading) {
-                            Spacer().frame(width: 0)
-                        }
-                        ToolbarItem(placement: .topBarLeading) {
-                            Button(action: {
+                            },
+                            onTapFollowingButton: {
                                 withAnimation {
                                     scrollProxy.scrollTo(1)
                                 }
-                            }, label: {
-                                Text("フォロー中")
-                                    .font(.system(size: 14, weight: .medium))
-                            })
-                            .frame(width: 92, height: 32)
-                            .background(.white.opacity(topTabButtonAlpha.followingButtonAlpha))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                        }
-                        ToolbarItem(placement: .topBarTrailing) {
-                            Button(action: {
+                            },
+                            onTapMailIcon: {
                                 
-                            }, label: {
-                                Image(systemName: "envelope")
-                                    .resizable()
-                                    .frame(width: 28, height: 20)
-                            })
-                            .padding(.trailing, 8)
-                        }
+                            }
+                        )
                     }
                 }
             })
@@ -93,6 +69,43 @@ struct HomeView: View {
             naviBarAppearance.backgroundColor = .systemBackground
             UINavigationBar.appearance().standardAppearance = naviBarAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private func toolBarContent(
+        onTapRecommenedButton: @escaping (() -> Void),
+        onTapFollowingButton: @escaping (() -> Void),
+        onTapMailIcon: @escaping (() -> Void)
+    ) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
+            Button(action: onTapRecommenedButton, label: {
+                Text("おすすめ")
+                    .font(.system(size: 14, weight: .medium))
+            })
+            .frame(width: 84, height: 32)
+            .background(.white.opacity(topTabButtonAlpha.recommendedButtonAlpha))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+        }
+        ToolbarItem(placement: .topBarLeading) {
+            Spacer().frame(width: 0)
+        }
+        ToolbarItem(placement: .topBarLeading) {
+            Button(action: onTapFollowingButton, label: {
+                Text("フォロー中")
+                    .font(.system(size: 14, weight: .medium))
+            })
+            .frame(width: 92, height: 32)
+            .background(.white.opacity(topTabButtonAlpha.followingButtonAlpha))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: onTapMailIcon, label: {
+                Image(systemName: "envelope")
+                    .resizable()
+                    .frame(width: 28, height: 20)
+            })
+            .padding(.trailing, 8)
         }
     }
     

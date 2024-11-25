@@ -18,33 +18,17 @@ struct MyPageView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
+                    toolBarContent(
+                        onTapMailIcon: {
                             
-                        }, label: {
-                            Image(systemName: "envelope")
-                                .resizable()
-                                .frame(width: 28, height: 20)
-                        })
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
+                        },
+                        onTapMyListIcon: {
                             
-                        }, label: {
-                            Image(systemName: "text.badge.star")
-                                .resizable()
-                                .frame(width: 28, height: 24)
-                        })
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
+                        },
+                        onTapSettingsIcon: {
                             
-                        }, label: {
-                            Image(systemName: "ellipsis.circle")
-                                .resizable()
-                                .frame(width: 28, height: 28)
-                        })
-                    }
+                        }
+                    )
                 }
             })
         }
@@ -55,6 +39,35 @@ struct MyPageView: View {
             naviBarAppearance.backgroundColor = .systemBackground
             UINavigationBar.appearance().standardAppearance = naviBarAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private func toolBarContent(
+        onTapMailIcon: @escaping (() -> Void),
+        onTapMyListIcon: @escaping (() -> Void),
+        onTapSettingsIcon: @escaping (() -> Void)
+    ) -> some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: onTapMailIcon, label: {
+                Image(systemName: "envelope")
+                    .resizable()
+                    .frame(width: 28, height: 20)
+            })
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: onTapMyListIcon, label: {
+                Image(systemName: "text.badge.star")
+                    .resizable()
+                    .frame(width: 28, height: 24)
+            })
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button(action: onTapSettingsIcon, label: {
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+            })
         }
     }
     
