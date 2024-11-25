@@ -46,9 +46,9 @@ struct PostDetailView: View {
                 }
             }
             Spacer().frame(height: 8)
-//            Text(post.description)
-            Text(Array(repeating: post.description, count: 1).joined())
+            Text(post.description)
                 .font(.system(size: 12))
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer().frame(height: 8)
         }
     }

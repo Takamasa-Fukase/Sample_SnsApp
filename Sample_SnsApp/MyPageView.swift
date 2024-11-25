@@ -88,6 +88,7 @@ struct MyPageView: View {
                 Spacer().frame(height: 8)
                 Text("歌ってみました！\n最初のところのリズム取るの難しすぎワロタ。お手柔らかに宜しくお願い致します！")
                     .font(.system(size: 12))
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer().frame(height: 8)
             }
             Spacer()

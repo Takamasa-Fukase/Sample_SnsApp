@@ -46,7 +46,7 @@ struct MockDataSource {
                 description: "名前はナポリタンですがローマ料理の方が好きです"
             ),
             postImageUrl: "https://s.widget-club.com/images/YyiR86zpwIMIfrCZoSs4ulVD9RF3/ae24314c9ca1372d388ab649f8429351/72c38d965cab91c079ddb83c8a8aa3ff.jpg?q=70&w=500",
-            description: "初投稿です！宜しくお願い致します！",
+            description: "初投稿です！宜しくお願い致します！初投稿です！宜しくお願い致します！初投稿です！宜しくお願い致します！初投稿です！宜しくお願い致します！",
             likesCount: 26,
             createdAt: "2024/11/25"
         ),
