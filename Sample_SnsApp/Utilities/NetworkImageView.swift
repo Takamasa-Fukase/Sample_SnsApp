@@ -10,21 +10,24 @@ import SwiftUI
 struct NetworkImageView: View {
     private let url: String
     private let placeHolderImage: Image
+    private let contentMode: ContentMode
     
     @State private var fetchedImage: UIImage?
     
     init(
         url: String,
-        placeHolderImage: Image
+        placeHolderImage: Image,
+        contentMode: ContentMode
     ) {
         self.url = url
         self.placeHolderImage = placeHolderImage
+        self.contentMode = contentMode
     }
     
     var body: some View {
         image
             .resizable()
-            .aspectRatio(contentMode: .fit)
+            .aspectRatio(contentMode: contentMode)
             .onAppear {
                 Task {
                     do {
@@ -55,7 +58,8 @@ struct NetworkImageView: View {
 #Preview {
     NetworkImageView(
         url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsV6BmIOP3qg5IyYOGuiRvYrnIq3Ksd946zw&s",
-        placeHolderImage: Image(systemName: "photo")
+        placeHolderImage: Image(systemName: "photo"),
+        contentMode: .fit
     )
     .frame(width: 200, height: 200)
 }

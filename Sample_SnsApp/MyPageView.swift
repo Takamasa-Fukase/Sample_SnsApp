@@ -81,9 +81,13 @@ struct MyPageView: View {
         VStack(spacing: 0) {
             VStack(alignment: .leading) {
                 HStack {
-                    Image(systemName: "person.circle.fill")
-                        .resizable()
+                    NetworkImageView(
+                        url: user.iconUrl,
+                        placeHolderImage: Image(systemName: "person.circle.fill"),
+                        contentMode: .fill
+                    )
                         .frame(width: 60, height: 60)
+                        .clipShape(Circle())
                     VStack(alignment: .leading) {
                         Text(user.name)
                             .font(.system(size: 16, weight: .bold))
