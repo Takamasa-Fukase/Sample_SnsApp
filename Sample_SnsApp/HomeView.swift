@@ -70,7 +70,7 @@ struct HomeView: View {
                             }, label: {
                                 Image(systemName: "envelope")
                                     .resizable()
-                                    .frame(width: 32, height: 24)
+                                    .frame(width: 28, height: 20)
                             })
                             .padding(.trailing, 8)
                         }

@@ -22,9 +22,9 @@ struct MyPageView: View {
                         Button(action: {
                             
                         }, label: {
-                            Image(systemName: "envelope.badge")
+                            Image(systemName: "envelope")
                                 .resizable()
-                                .frame(width: 32, height: 24)
+                                .frame(width: 28, height: 20)
                         })
                     }
                     ToolbarItem(placement: .topBarTrailing) {
