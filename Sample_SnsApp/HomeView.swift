@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct HomeView: View {
-    let colors: [Color] = [.orange, .yellow, .green, .blue, .purple, .pink, .brown]
+    struct FramePreferenceKey: PreferenceKey {
+        typealias Value = [CGRect]
+        static var defaultValue: [CGRect] = [CGRect()]
+        static func reduce(value: inout [CGRect], nextValue: () -> [CGRect]) {
+            value.append(contentsOf: nextValue())
+        }
+    }
+    
+    private let colors: [Color] = [.orange, .yellow, .green, .blue, .purple, .pink, .brown]
+    @State private var frame = CGRect()
 
     var body: some View {
         NavigationStack {
-            GeometryReader(content: { geometry in
-                ScrollView(.horizontal) {
+            ScrollView(.horizontal) {
+                GeometryReader { geometry in
                     HStack(spacing: 0) {
                         ForEach(0..<2, id: \.self) { id in
                             verticalPostList(
@@ -22,6 +31,7 @@ struct HomeView: View {
                             )
                         }
                     }
+                    .preference(key: FramePreferenceKey.self, value: [geometry.frame(in: .global)])
                 }
                 .scrollTargetBehavior(.paging)
                 .toolbar {
@@ -61,8 +71,13 @@ struct HomeView: View {
                         .padding(.trailing, 8)
                     }
                 }
-            })
-            .ignoresSafeArea(edges: [.top])
+                .ignoresSafeArea(edges: [.top])
+            }
+            .background(.green)
+            .onPreferenceChange(FramePreferenceKey.self) { value in
+                frame = value[0]
+                print("offset: \(frame)")
+            }
         }
         .tint(Color(.label))
     }
