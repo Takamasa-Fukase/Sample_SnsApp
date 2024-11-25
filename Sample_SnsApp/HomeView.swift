@@ -18,11 +18,11 @@ struct HomeView: View {
     
     private let colors: [Color] = [.orange, .yellow, .green, .blue, .purple, .pink, .brown]
     @State private var frame = CGRect()
-
+    
     var body: some View {
         NavigationStack {
-            ScrollView(.horizontal) {
-                GeometryReader { geometry in
+            GeometryReader(content: { geometry in
+                ScrollView(.horizontal) {
                     HStack(spacing: 0) {
                         ForEach(0..<2, id: \.self) { id in
                             verticalPostList(
@@ -31,7 +31,6 @@ struct HomeView: View {
                             )
                         }
                     }
-                    .preference(key: FramePreferenceKey.self, value: [geometry.frame(in: .global)])
                 }
                 .scrollTargetBehavior(.paging)
                 .toolbar {
@@ -71,13 +70,8 @@ struct HomeView: View {
                         .padding(.trailing, 8)
                     }
                 }
-                .ignoresSafeArea(edges: [.top])
-            }
-            .background(.green)
-            .onPreferenceChange(FramePreferenceKey.self) { value in
-                frame = value[0]
-                print("offset: \(frame)")
-            }
+            })
+            .ignoresSafeArea(edges: [.top])
         }
         .tint(Color(.label))
     }
