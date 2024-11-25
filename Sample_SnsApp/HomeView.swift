@@ -14,59 +14,66 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             GeometryReader(content: { geometry in
-                ContentFrameTrackableScrollView(
-                    scrollDirections: .horizontal,
-                    showsIndicator: false,
-                    content: {
-                        HStack(spacing: 0) {
-                            ForEach(0..<2, id: \.self) { id in
-                                verticalPostList(
-                                    colors: id == 0 ? colors : colors.reversed(),
-                                    geometry: geometry
-                                )
+                ScrollViewReader { scrollProxy in
+                    ContentFrameTrackableScrollView(
+                        scrollDirections: .horizontal,
+                        showsIndicator: false,
+                        content: {
+                            HStack(spacing: 0) {
+                                ForEach(0..<2, id: \.self) { id in
+                                    verticalPostList(
+                                        colors: id == 0 ? colors : colors.reversed(),
+                                        geometry: geometry
+                                    )
+                                    .id(id)
+                                }
                             }
+                        },
+                        onScroll: { contentFrame in
+                            topTabButtonAlpha = getTopTabButtonAlpha(frame: contentFrame)
                         }
-                    },
-                    onScroll: { contentFrame in
-                        topTabButtonAlpha = getTopTabButtonAlpha(frame: contentFrame)
-                    }
-                )
-                .scrollTargetBehavior(.paging)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
-                            
-                        }, label: {
-                            Text("おすすめ")
-                                .font(.system(size: 14, weight: .medium))
-                        })
-                        .frame(width: 84, height: 32)
-                        .background(.white.opacity(topTabButtonAlpha.recommendedButtonAlpha))
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                    }
-                    ToolbarItem(placement: .topBarLeading) {
-                        Spacer().frame(width: 0)
-                    }
-                    ToolbarItem(placement: .topBarLeading) {
-                        Button(action: {
-                            
-                        }, label: {
-                            Text("フォロー中")
-                                .font(.system(size: 14, weight: .medium))
-                        })
-                        .frame(width: 92, height: 32)
-                        .background(.white.opacity(topTabButtonAlpha.followingButtonAlpha))
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                    }
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Button(action: {
-                            
-                        }, label: {
-                            Image(systemName: "envelope")
-                                .resizable()
-                                .frame(width: 32, height: 24)
-                        })
-                        .padding(.trailing, 8)
+                    )
+                    .scrollTargetBehavior(.paging)
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(action: {
+                                withAnimation {
+                                    scrollProxy.scrollTo(0)
+                                }
+                            }, label: {
+                                Text("おすすめ")
+                                    .font(.system(size: 14, weight: .medium))
+                            })
+                            .frame(width: 84, height: 32)
+                            .background(.white.opacity(topTabButtonAlpha.recommendedButtonAlpha))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        }
+                        ToolbarItem(placement: .topBarLeading) {
+                            Spacer().frame(width: 0)
+                        }
+                        ToolbarItem(placement: .topBarLeading) {
+                            Button(action: {
+                                withAnimation {
+                                    scrollProxy.scrollTo(1)
+                                }
+                            }, label: {
+                                Text("フォロー中")
+                                    .font(.system(size: 14, weight: .medium))
+                            })
+                            .frame(width: 92, height: 32)
+                            .background(.white.opacity(topTabButtonAlpha.followingButtonAlpha))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                        }
+                        ToolbarItem(placement: .topBarTrailing) {
+                            Button(action: {
+                                
+                            }, label: {
+                                Image(systemName: "envelope")
+                                    .resizable()
+                                    .frame(width: 32, height: 24)
+                            })
+                            .padding(.trailing, 8)
+                        }
                     }
                 }
             })
