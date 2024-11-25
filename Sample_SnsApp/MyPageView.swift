@@ -83,7 +83,11 @@ struct MyPageView: View {
                 HStack {
                     NetworkImageView(
                         url: user.iconUrl,
-                        placeHolderImage: Image(systemName: "person.circle.fill"),
+                        placeHolderView: {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        },
                         contentMode: .fill
                     )
                         .frame(width: 60, height: 60)

@@ -30,7 +30,12 @@ struct PostDetailView: View {
         .background {
             NetworkImageView(
                 url: post.postImageUrl,
-                placeHolderImage: Image(systemName: "photo"),
+                placeHolderView: {
+                    Image(systemName: "photo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 160, height: 160)
+                },
                 contentMode: .fill
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)

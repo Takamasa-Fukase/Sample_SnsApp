@@ -7,31 +7,29 @@
 
 import SwiftUI
 
-struct NetworkImageView: View {
+struct NetworkImageView<PlaceHolderView: View>: View {
     private let url: String
-    private let placeHolderImage: Image
+    private let placeHolderView: PlaceHolderView
     private let contentMode: ContentMode
     
     @State private var fetchedImage: UIImage?
     
     init(
         url: String,
-        placeHolderImage: Image,
+        @ViewBuilder placeHolderView: () -> PlaceHolderView,
         contentMode: ContentMode
     ) {
         self.url = url
-        self.placeHolderImage = placeHolderImage
+        self.placeHolderView = placeHolderView()
         self.contentMode = contentMode
     }
     
     var body: some View {
-        image
-            .resizable()
-            .aspectRatio(contentMode: contentMode)
+        baseView
             .onAppear {
                 Task {
                     do {
-                        fetchedImage = try await getImage(from: URL(string: url)!)
+                        self.fetchedImage = try await getImage(from: URL(string: url)!)
                         
                     } catch {
                         print("error: \(error)")
@@ -40,11 +38,16 @@ struct NetworkImageView: View {
             }
     }
     
-    private var image: Image {
-        if let fetchedImage = fetchedImage {
-            return Image(uiImage: fetchedImage)
-        }else {
-            return placeHolderImage
+    private var baseView: some View {
+        // MEMO: 異なる型のビューを返却するためにGroupでまとめている
+        return Group {
+            if let fetchedImage = fetchedImage {
+                Image(uiImage: fetchedImage)
+                    .resizable()
+                    .aspectRatio(contentMode: contentMode)
+            } else {
+                placeHolderView
+            }
         }
     }
     
@@ -58,7 +61,11 @@ struct NetworkImageView: View {
 #Preview {
     NetworkImageView(
         url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsV6BmIOP3qg5IyYOGuiRvYrnIq3Ksd946zw&s",
-        placeHolderImage: Image(systemName: "photo"),
+        placeHolderView: {
+            Image(systemName: "photo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        },
         contentMode: .fit
     )
     .frame(width: 200, height: 200)
