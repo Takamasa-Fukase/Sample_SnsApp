@@ -27,9 +27,14 @@ struct PostDetailView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.all, 12)
         .foregroundStyle(.white)
-//        .background(
-//
-//        )
+        .background {
+            NetworkImageView(
+                url: post.postImageUrl,
+                placeHolderImage: Image(systemName: "photo"),
+                contentMode: .fill
+            )
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
     
     var descriptionView: some View {
