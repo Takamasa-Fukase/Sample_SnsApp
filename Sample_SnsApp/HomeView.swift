@@ -14,23 +14,22 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             GeometryReader(content: { geometry in
-                ScrollView(.horizontal) {
-                    HStack(spacing: 0) {
-                        ForEach(0..<2, id: \.self) { id in
-                            verticalPostList(
-                                colors: id == 0 ? colors : colors.reversed(),
-                                geometry: geometry
-                            )
-                        }
-                    }
-                    .background {
-                        GeometryReader { geometry in
-                            Color.clear.onChange(of: geometry.frame(in: .global)) { _, newFrame in
-                                topTabButtonAlpha = topTabButtonAlpha(frame: newFrame)
+                ContentFrameTrackableScrollView(
+                    scrollDirections: .horizontal,
+                    content: {
+                        HStack(spacing: 0) {
+                            ForEach(0..<2, id: \.self) { id in
+                                verticalPostList(
+                                    colors: id == 0 ? colors : colors.reversed(),
+                                    geometry: geometry
+                                )
                             }
                         }
+                    },
+                    onScroll: { contentFrame in
+                        topTabButtonAlpha = getTopTabButtonAlpha(frame: contentFrame)
                     }
-                }
+                )
                 .scrollTargetBehavior(.paging)
                 .toolbar {
                     ToolbarItem(placement: .topBarLeading) {
@@ -102,7 +101,7 @@ struct HomeView: View {
         .scrollTargetBehavior(.paging)
     }
     
-    private func topTabButtonAlpha(frame: CGRect) -> (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) {
+    private func getTopTabButtonAlpha(frame: CGRect) -> (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) {
         let scrollProgress = frame.minX / (frame.width / 2)
         let maxButtonColorAlpha = 0.3
         let recommendedButtonAlpha = -(-1 - scrollProgress) * maxButtonColorAlpha
