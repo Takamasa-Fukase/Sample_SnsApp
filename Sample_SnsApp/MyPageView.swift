@@ -8,6 +8,12 @@
 import SwiftUI
 
 struct MyPageView: View {
+    let user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
     var body: some View {
         NavigationStack {
             GeometryReader(content: { geometry in
@@ -79,14 +85,12 @@ struct MyPageView: View {
                         .resizable()
                         .frame(width: 60, height: 60)
                     VStack(alignment: .leading) {
-                        Text("ウルトラ深瀬")
+                        Text(user.name)
                             .font(.system(size: 16, weight: .bold))
-                        Text("2024/11/11")
-                            .font(.system(size: 12))
                     }
                 }
                 Spacer().frame(height: 8)
-                Text("歌ってみました！\n最初のところのリズム取るの難しすぎワロタ。お手柔らかに宜しくお願い致します！")
+                Text(user.description)
                     .font(.system(size: 12))
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer().frame(height: 8)
@@ -134,5 +138,7 @@ struct MyPageView: View {
 }
 
 #Preview {
-    MyPageView()
+    MyPageView(
+        user: MockDataSource.users.first!
+    )
 }

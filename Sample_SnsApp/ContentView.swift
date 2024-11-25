@@ -33,7 +33,7 @@ struct ContentView: View {
                             .environment(\.symbolVariants, .none)
                     }
                     .tag(1)
-                MyPageView()
+                MyPageView(user: MockDataSource.users.first!)
                     .tabItem {
                         Label("You", systemImage: selectedTabIndex == 2 ? "person.fill" : "person")
                             .environment(\.symbolVariants, .none)
