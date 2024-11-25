@@ -20,6 +20,11 @@
 		BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A062CF33C950018649D /* PostCreateTopView.swift */; };
 		BCFB7A092CF42E830018649D /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A082CF42E830018649D /* View+Extension.swift */; };
 		BCFB7A0D2CF44F470018649D /* ContentFrameTrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A0C2CF44F470018649D /* ContentFrameTrackableScrollView.swift */; };
+		BCFB7A0F2CF461040018649D /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A0E2CF461040018649D /* NotificationsView.swift */; };
+		BCFB7A122CF462910018649D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A112CF462910018649D /* User.swift */; };
+		BCFB7A142CF462980018649D /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A132CF462980018649D /* Notification.swift */; };
+		BCFB7A162CF4629D0018649D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A152CF4629D0018649D /* Post.swift */; };
+		BCFB7A182CF465000018649D /* MockDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A172CF465000018649D /* MockDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 		BCFB7A062CF33C950018649D /* PostCreateTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateTopView.swift; sourceTree = "<group>"; };
 		BCFB7A082CF42E830018649D /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		BCFB7A0C2CF44F470018649D /* ContentFrameTrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFrameTrackableScrollView.swift; sourceTree = "<group>"; };
+		BCFB7A0E2CF461040018649D /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		BCFB7A112CF462910018649D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BCFB7A132CF462980018649D /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		BCFB7A152CF4629D0018649D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		BCFB7A172CF465000018649D /* MockDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,11 +117,14 @@
 			isa = PBXGroup;
 			children = (
 				BC5097ED2CF18F850080F344 /* Sample_SnsAppApp.swift */,
+				BCFB7A172CF465000018649D /* MockDataSource.swift */,
 				BC5097EF2CF18F850080F344 /* ContentView.swift */,
 				BCFB79FE2CF192EF0018649D /* HomeView.swift */,
 				BCFB7A002CF1945B0018649D /* PostDetailView.swift */,
 				BCFB7A062CF33C950018649D /* PostCreateTopView.swift */,
 				BCFB7A042CF1AD780018649D /* MyPageView.swift */,
+				BCFB7A0E2CF461040018649D /* NotificationsView.swift */,
+				BCFB7A102CF462800018649D /* Entities */,
 				BCFB7A0A2CF44EBC0018649D /* Extensions */,
 				BCFB7A0B2CF44EC20018649D /* Utilities */,
 				BC5097F12CF18F860080F344 /* Assets.xcassets */,
@@ -159,6 +172,16 @@
 				BCFB7A0C2CF44F470018649D /* ContentFrameTrackableScrollView.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		BCFB7A102CF462800018649D /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				BCFB7A112CF462910018649D /* User.swift */,
+				BCFB7A152CF4629D0018649D /* Post.swift */,
+				BCFB7A132CF462980018649D /* Notification.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,11 +317,16 @@
 				BCFB79FF2CF192EF0018649D /* HomeView.swift in Sources */,
 				BC5097F02CF18F850080F344 /* ContentView.swift in Sources */,
 				BC5097EE2CF18F850080F344 /* Sample_SnsAppApp.swift in Sources */,
+				BCFB7A162CF4629D0018649D /* Post.swift in Sources */,
 				BCFB7A0D2CF44F470018649D /* ContentFrameTrackableScrollView.swift in Sources */,
+				BCFB7A182CF465000018649D /* MockDataSource.swift in Sources */,
 				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
 				BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */,
 				BCFB7A092CF42E830018649D /* View+Extension.swift in Sources */,
 				BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */,
+				BCFB7A142CF462980018649D /* Notification.swift in Sources */,
+				BCFB7A122CF462910018649D /* User.swift in Sources */,
+				BCFB7A0F2CF461040018649D /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

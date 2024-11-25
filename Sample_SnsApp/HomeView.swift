@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct HomeView: View {
-    private let colors: [Color] = [.orange, .yellow, .green, .blue, .purple, .pink, .brown]
+    let recommendedPosts: [Post]
+    let followingPosts: [Post]
     @State private var topTabButtonAlpha: (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) = (0.0, 0.0)
+    
+    init(
+        recommendedPosts: [Post], 
+        followingPosts: [Post]
+    ) {
+        self.recommendedPosts = recommendedPosts
+        self.followingPosts = followingPosts
+    }
     
     var body: some View {
         NavigationStack {
@@ -20,12 +29,12 @@ struct HomeView: View {
                         showsIndicator: false,
                         content: {
                             HStack(spacing: 0) {
-                                ForEach(0..<2, id: \.self) { id in
+                                ForEach(Array([recommendedPosts, followingPosts].enumerated()), id: \.offset) { index, posts in
                                     verticalPostList(
-                                        colors: id == 0 ? colors : colors.reversed(),
+                                        posts: posts,
                                         geometry: geometry
                                     )
-                                    .id(id)
+                                    .id(index)
                                 }
                             }
                         },
@@ -109,14 +118,14 @@ struct HomeView: View {
         }
     }
     
-    private func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {
+    private func verticalPostList(posts: [Post], geometry: GeometryProxy) -> some View {
         return ScrollView(
             .vertical,
             showsIndicators: false
         ) {
             LazyVStack(spacing: 0, content: {
-                ForEach(colors, id: \.self) { color in
-                    PostDetailView(backgroundColor: color)
+                ForEach(posts, id: \.self) { post in
+                    PostDetailView(post: post)
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
                 }
@@ -135,5 +144,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(recommendedPosts: MockDataSource.posts, followingPosts: MockDataSource.posts.reversed())
 }

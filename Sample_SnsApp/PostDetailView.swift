@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    var backgroundColor: Color
+    let post: Post
+    
+    init(post: Post) {
+        self.post = post
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -23,7 +27,9 @@ struct PostDetailView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.all, 12)
         .foregroundStyle(.white)
-        .background(backgroundColor)
+//        .background(
+//
+//        )
     }
     
     var descriptionView: some View {
@@ -33,14 +39,15 @@ struct PostDetailView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                 VStack(alignment: .leading) {
-                    Text("ウルトラ深瀬")
+                    Text(post.user.name)
                         .font(.system(size: 16, weight: .bold))
-                    Text("2024/11/11")
+                    Text(post.createdAt)
                         .font(.system(size: 12))
                 }
             }
             Spacer().frame(height: 8)
-            Text("歌ってみました！\n最初のところのリズム取るの難しすぎワロタ。お手柔らかに宜しくお願い致します！")
+//            Text(post.description)
+            Text(Array(repeating: post.description, count: 1).joined())
                 .font(.system(size: 12))
             Spacer().frame(height: 8)
         }
@@ -48,10 +55,10 @@ struct PostDetailView: View {
     
     var rightButtonsView: some View {
         VStack(spacing: 20) {
-            rightCountButton(imageName: "heart", count: 16) {
+            rightCountButton(imageName: "heart", count: post.likesCount) {
                 
             }
-            rightCountButton(imageName: "ellipsis.bubble", count: 19) {
+            rightCountButton(imageName: "ellipsis.bubble", count: 0) {
                 
             }
             rightCountButton(imageName: "arrowshape.turn.up.right") {
@@ -84,5 +91,7 @@ struct PostDetailView: View {
 }
 
 #Preview {
-    PostDetailView(backgroundColor: .blue)
+    PostDetailView(
+        post: MockDataSource.posts.first!
+    )
 }
