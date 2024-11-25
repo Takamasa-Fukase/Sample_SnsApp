@@ -18,6 +18,7 @@
 		BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A002CF1945B0018649D /* PostDetailView.swift */; };
 		BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A042CF1AD780018649D /* MyPageView.swift */; };
 		BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A062CF33C950018649D /* PostCreateTopView.swift */; };
+		BCFB7A092CF42E830018649D /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFB7A082CF42E830018649D /* View+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		BCFB7A002CF1945B0018649D /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		BCFB7A042CF1AD780018649D /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		BCFB7A062CF33C950018649D /* PostCreateTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCreateTopView.swift; sourceTree = "<group>"; };
+		BCFB7A082CF42E830018649D /* View+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				BCFB7A002CF1945B0018649D /* PostDetailView.swift */,
 				BCFB7A062CF33C950018649D /* PostCreateTopView.swift */,
 				BCFB7A042CF1AD780018649D /* MyPageView.swift */,
+				BCFB7A082CF42E830018649D /* View+Extension.swift */,
 				BC5097F12CF18F860080F344 /* Assets.xcassets */,
 				BC5097F32CF18F860080F344 /* Preview Content */,
 			);
@@ -274,6 +277,7 @@
 				BC5097EE2CF18F850080F344 /* Sample_SnsAppApp.swift in Sources */,
 				BCFB7A012CF1945B0018649D /* PostDetailView.swift in Sources */,
 				BCFB7A072CF33C950018649D /* PostCreateTopView.swift in Sources */,
+				BCFB7A092CF42E830018649D /* View+Extension.swift in Sources */,
 				BCFB7A052CF1AD780018649D /* MyPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

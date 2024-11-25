@@ -73,6 +73,20 @@ struct HomeView: View {
             .ignoresSafeArea(edges: [.top])
         }
         .tint(Color(.label))
+        .onWillAppear {
+            let naviBarAppearance = UINavigationBarAppearance()
+            naviBarAppearance.configureWithTransparentBackground()
+            naviBarAppearance.backgroundColor = .clear
+            UINavigationBar.appearance().standardAppearance = naviBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
+        }
+        .onWillDisappear {
+            let naviBarAppearance = UINavigationBarAppearance()
+            naviBarAppearance.configureWithOpaqueBackground()
+            naviBarAppearance.backgroundColor = .systemBackground
+            UINavigationBar.appearance().standardAppearance = naviBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
+        }
     }
     
     private func verticalPostList(colors: [Color], geometry: GeometryProxy) -> some View {

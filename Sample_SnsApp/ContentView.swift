@@ -11,11 +11,6 @@ struct ContentView: View {
     @State private var selectedTabIndex: Int = 0
     
     init() {
-        let naviBarAppearance = UINavigationBarAppearance()
-        naviBarAppearance.configureWithTransparentBackground()
-        naviBarAppearance.backgroundColor = .systemBackground
-        UINavigationBar.appearance().standardAppearance = naviBarAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
         UITabBar.appearance().backgroundColor = .systemBackground
         UITabBar.appearance().unselectedItemTintColor = .secondaryLabel
     }

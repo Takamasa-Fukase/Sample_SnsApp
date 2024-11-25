@@ -49,6 +49,13 @@ struct MyPageView: View {
             })
         }
         .tint(Color(.label))
+        .onWillAppear {
+            let naviBarAppearance = UINavigationBarAppearance()
+            naviBarAppearance.configureWithTransparentBackground()
+            naviBarAppearance.backgroundColor = .systemBackground
+            UINavigationBar.appearance().standardAppearance = naviBarAppearance
+            UINavigationBar.appearance().scrollEdgeAppearance = naviBarAppearance
+        }
     }
     
     func profileView() -> some View {
