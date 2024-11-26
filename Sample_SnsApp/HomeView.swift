@@ -68,6 +68,10 @@ struct HomeView: View {
                         switch item {
                         case .notifications:
                             NotificationsView()
+                        case .userProfile(let user):
+                            UserProfileView(userId: user.id)
+                        case .postDetail(let post):
+                            PostDetailView(post: post)
                         }
                     }
                 }

@@ -26,17 +26,19 @@ struct NotificationsView: View {
     func listItem(notification: NotificationEntity) -> some View {
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
-                NetworkImageView(
-                    url: notification.user.iconUrl,
-                    placeHolderView: {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    },
-                    contentMode: .fill
-                )
-                .frame(width: 48, height: 48)
-                .clipShape(Circle())
+                NavigationLink(value: HomeNavigationItem.userProfile(notification.user)) {
+                    NetworkImageView(
+                        url: notification.user.iconUrl,
+                        placeHolderView: {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        },
+                        contentMode: .fill
+                    )
+                    .frame(width: 48, height: 48)
+                    .clipShape(Circle())
+                }
                 Spacer().frame(width: 8)
                 VStack(alignment: .leading, spacing: 0) {
                     Text("\(notification.user.name)から\(notification.title)")
