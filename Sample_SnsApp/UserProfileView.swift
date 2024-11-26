@@ -36,7 +36,7 @@ struct UserProfileView: View {
             VStack(alignment: .leading) {
                 HStack {
                     NetworkImageView(
-                        url: user?.iconUrl ?? "",
+                        state: NetworkImageViewState(url: user?.iconUrl ?? ""),
                         placeHolderView: {
                             Image(systemName: "person.circle.fill")
                                 .resizable()

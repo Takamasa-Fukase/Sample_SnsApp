@@ -38,7 +38,7 @@ struct NotificationsView: View {
                 // ユーザー詳細への遷移トリガー
                 NavigationLink(value: HomeNavigationItem.userProfile(userId: notification.userId)) {
                     NetworkImageView(
-                        url: notification.userIconUrl ?? "",
+                        state: NetworkImageViewState(url: notification.userIconUrl ?? ""),
                         placeHolderView: {
                             Image(systemName: "person.circle.fill")
                                 .resizable()
@@ -70,7 +70,7 @@ struct NotificationsView: View {
                 // 投稿詳細への遷移トリガー
                 NavigationLink(value: HomeNavigationItem.postDetail(postId: notification.postId)) {
                     NetworkImageView(
-                        url: notification.postImageUrl,
+                        state: NetworkImageViewState(url: notification.postImageUrl),
                         placeHolderView: {
                             Image(systemName: "photo")
                                 .resizable()

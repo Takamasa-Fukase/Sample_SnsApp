@@ -35,7 +35,6 @@ struct PostDetailView: View {
         .background {
             NetworkImageView(
                 state: NetworkImageViewState(url: post?.postImageUrl ?? ""),
-                url: post?.postImageUrl ?? "",
                 placeHolderView: {
                     Image(systemName: "photo")
                         .resizable()
@@ -73,9 +72,17 @@ struct PostDetailView: View {
     var descriptionView: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .frame(width: 40, height: 40)
+                NetworkImageView(
+                    state: NetworkImageViewState(url: post?.userIconUrl ?? ""),
+                    placeHolderView: {
+                        Image(systemName: "person.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    },
+                    contentMode: .fill
+                )
+                .frame(width: 40, height: 40)
+                
                 VStack(alignment: .leading) {
                     Text(post?.userName ?? "")
                         .font(.system(size: 16, weight: .bold))
