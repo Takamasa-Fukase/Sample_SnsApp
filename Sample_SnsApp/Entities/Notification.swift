@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NotificationEntity: Identifiable {
+struct NotificationEntity: Identifiable, Hashable {
     let id: Int
     let userId: Int
     let user: User

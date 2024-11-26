@@ -9,8 +9,8 @@ import SwiftUI
 
 enum HomeNavigationItem: Hashable {
     case notifications
-//    case userProfile(User)
-//    case postDetail(Post)
+    case userProfile(User)
+    case postDetail(Post)
 }
 
 struct HomeView: View {
