@@ -34,6 +34,7 @@ struct PostDetailView: View {
         .foregroundStyle(.white)
         .background {
             NetworkImageView(
+                state: NetworkImageViewState(url: post?.postImageUrl ?? ""),
                 url: post?.postImageUrl ?? "",
                 placeHolderView: {
                     Image(systemName: "photo")
