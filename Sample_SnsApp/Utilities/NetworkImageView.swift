@@ -29,7 +29,8 @@ struct NetworkImageView<PlaceHolderView: View>: View {
             .onAppear {
                 Task {
                     do {
-                        self.fetchedImage = try await getImage(from: URL(string: url)!)
+                        guard let url = URL(string: url) else { return }
+                        self.fetchedImage = try await getImage(from: url)
                         
                     } catch {
                         print("error: \(error)")
