@@ -18,8 +18,17 @@ struct NotificationsView: View {
                 }
             })
         }
+//        .redacted(reason: notifications.isEmpty ? .placeholder : [])
         .onAppear {
-            notifications = MockDataSource.notifications
+            Task {
+                do {
+                    try await Task.sleep(nanoseconds: 1500000000)
+                    notifications = MockDataSource.notifications
+                    
+                }catch {
+                    print(error)
+                }
+            }
         }
     }
     
