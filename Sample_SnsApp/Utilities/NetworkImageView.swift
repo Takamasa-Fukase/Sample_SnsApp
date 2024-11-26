@@ -11,26 +11,12 @@ final class NetworkImageViewState: ObservableObject {
     @Published var fetchedImage: UIImage?
     
     init(url: String) {
-        print("state.init url: \(url)")
-        fetch(url: url)
-    }
-    
-    private func getImage(from url: URL) async throws -> UIImage {
-        let session = URLSession(configuration: .default)
-        let (data, _) = try await session.data(from: url)
-        return UIImage(data: data) ?? UIImage()
-    }
-    
-    private func fetch(url: String) {
-        print("fetch: \(url)")
         Task { @MainActor in
             do {
                 guard let url = URL(string: url) else { return }
                 let image = try await getImage(from: url)
-                print("取得した: \(image)")
                 DispatchQueue.main.async {
                     self.fetchedImage = image
-                    print("代入した: \(self.fetchedImage)")
                 }
                 
             } catch {
@@ -38,25 +24,25 @@ final class NetworkImageViewState: ObservableObject {
             }
         }
     }
+    
+    private func getImage(from url: URL) async throws -> UIImage {
+        let session = URLSession(configuration: .default)
+        let (data, _) = try await session.data(from: url)
+        return UIImage(data: data) ?? UIImage()
+    }
 }
 
 struct NetworkImageView<PlaceHolderView: View>: View {
     @ObservedObject private var state: NetworkImageViewState
-    
-    private let url: String
     private let placeHolderView: PlaceHolderView
     private let contentMode: ContentMode
-    
-//    @State private var fetchedImage: UIImage?
-    
+        
     init(
         state: NetworkImageViewState = .init(url: ""),
-        url: String,
         @ViewBuilder placeHolderView: () -> PlaceHolderView,
         contentMode: ContentMode
     ) {
         self.state = state
-        self.url = url
         self.placeHolderView = placeHolderView()
         self.contentMode = contentMode
     }
@@ -66,7 +52,6 @@ struct NetworkImageView<PlaceHolderView: View>: View {
     }
     
     private var baseView: some View {
-        print("baseView fetchedImage: \(state.fetchedImage)")
         // MEMO: 異なる型のビューを返却するためにGroupでまとめている
         return Group {
             if let fetchedImage = state.fetchedImage {
@@ -82,7 +67,7 @@ struct NetworkImageView<PlaceHolderView: View>: View {
 
 #Preview {
     NetworkImageView(
-        url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsV6BmIOP3qg5IyYOGuiRvYrnIq3Ksd946zw&s",
+        state: NetworkImageViewState(url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsV6BmIOP3qg5IyYOGuiRvYrnIq3Ksd946zw&s"),
         placeHolderView: {
             Image(systemName: "photo")
                 .resizable()
