@@ -8,21 +8,18 @@
 import SwiftUI
 
 struct NotificationsView: View {
-    private let notifications: [NotificationEntity]
-    
-    init(notifications: [NotificationEntity]) {
-        self.notifications = notifications
-    }
+    @State private var notifications: [NotificationEntity] = []
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVStack(content: {
-                    ForEach(notifications) { notification in
-                        listItem(notification: notification)
-                    }
-                })
-            }
+        ScrollView {
+            LazyVStack(spacing: 0, content: {
+                ForEach(notifications) { notification in
+                    listItem(notification: notification)
+                }
+            })
+        }
+        .onAppear {
+            notifications = MockDataSource.notifications
         }
     }
     
@@ -66,7 +63,7 @@ struct NotificationsView: View {
                 .frame(width: 30, height: 53)
                 .clipped()
             }
-            .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+            .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             Color(.label)
                 .frame(maxWidth: .infinity)
                 .frame(height: 1)
@@ -76,7 +73,5 @@ struct NotificationsView: View {
 }
 
 #Preview {
-    NotificationsView(
-        notifications: MockDataSource.notifications
-    )
+    NotificationsView()
 }

@@ -7,10 +7,17 @@
 
 import SwiftUI
 
+enum HomeNavigationItem: Hashable {
+    case notifications
+//    case userProfile(User)
+//    case postDetail(Post)
+}
+
 struct HomeView: View {
     let recommendedPosts: [Post]
     let followingPosts: [Post]
     @State private var topTabButtonAlpha: (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) = (0.0, 0.0)
+    @State private var path = [HomeNavigationItem]()
     
     init(
         recommendedPosts: [Post], 
@@ -21,7 +28,7 @@ struct HomeView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             GeometryReader(content: { geometry in
                 ScrollViewReader { scrollProxy in
                     ContentFrameTrackableScrollView(
@@ -54,11 +61,14 @@ struct HomeView: View {
                                 withAnimation {
                                     scrollProxy.scrollTo(1)
                                 }
-                            },
-                            onTapMailIcon: {
-                                
                             }
                         )
+                    }
+                    .navigationDestination(for: HomeNavigationItem.self) { item in
+                        switch item {
+                        case .notifications:
+                            NotificationsView()
+                        }
                     }
                 }
             })
@@ -84,8 +94,7 @@ struct HomeView: View {
     @ToolbarContentBuilder
     private func toolBarContent(
         onTapRecommenedButton: @escaping (() -> Void),
-        onTapFollowingButton: @escaping (() -> Void),
-        onTapMailIcon: @escaping (() -> Void)
+        onTapFollowingButton: @escaping (() -> Void)
     ) -> some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
             Button(action: onTapRecommenedButton, label: {
@@ -109,12 +118,12 @@ struct HomeView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16))
         }
         ToolbarItem(placement: .topBarTrailing) {
-            Button(action: onTapMailIcon, label: {
-                Image(systemName: "envelope")
-                    .resizable()
-                    .frame(width: 28, height: 20)
-            })
-            .padding(.trailing, 8)
+            NavigationLink(value: HomeNavigationItem.notifications) {
+                    Image(systemName: "envelope")
+                        .resizable()
+                        .frame(width: 28, height: 20)
+                        .padding(.trailing, 8)
+            }
         }
     }
     
