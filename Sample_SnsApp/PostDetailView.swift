@@ -45,15 +45,26 @@ struct PostDetailView: View {
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        // postEntityが取得されるまでの間、スケルトン表示をする
+        .redacted(reason: post == nil ? .placeholder : [])
         .onAppear {
-            // PostEntityが受け渡されている場合（投稿一覧）はそれを表示
-            if let post = post {
-                self.post = post
-            }
-            // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
-            else {
-                guard let post = MockDataSource.posts.first(where: { $0.id == postId }) else { return }
-                self.post = post
+            Task {
+                do {
+                    // デバッグ用の遅延処理
+                    try await Task.sleep(nanoseconds: 1500000000)
+                    
+                    // PostEntityが受け渡されている場合（投稿一覧）はそれを表示
+                    if let post = post {
+                        self.post = post
+                    }
+                    // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
+                    else {
+                        guard let post = MockDataSource.posts.first(where: { $0.id == postId }) else { return }
+                        self.post = post
+                    }
+                }catch {
+                    print("error: \(error)")
+                }
             }
         }
     }
