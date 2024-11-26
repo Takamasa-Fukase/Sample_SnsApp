@@ -10,7 +10,9 @@ import Foundation
 struct NotificationEntity: Identifiable, Hashable {
     let id: Int
     let userId: Int
-    let user: User
+    let userName: String
+    let userIconUrl: String?
     let title: String
     let message: String?
+    let postImageUrl: String
 }

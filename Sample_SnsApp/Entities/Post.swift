@@ -10,7 +10,8 @@ import Foundation
 struct Post: Identifiable, Hashable {
     let id: Int
     let userId: Int
-    let user: User
+    let userName: String
+    let userIconUrl: String?
     let postImageUrl: String
     let description: String
     let likesCount: Int

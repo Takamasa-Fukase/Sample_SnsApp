@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct PostDetailView: View {
-    let post: Post
+    private let postId: Int
+    @State private var post: Post?
     
-    init(post: Post) {
+    init(
+        postId: Int,
+        post: Post? = nil
+    ) {
+        self.postId = postId
         self.post = post
     }
     
@@ -29,7 +34,7 @@ struct PostDetailView: View {
         .foregroundStyle(.white)
         .background {
             NetworkImageView(
-                url: post.postImageUrl,
+                url: post?.postImageUrl ?? "",
                 placeHolderView: {
                     Image(systemName: "photo")
                         .resizable()
@@ -40,6 +45,17 @@ struct PostDetailView: View {
             )
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .onAppear {
+            // PostEntityが受け渡されている場合（投稿一覧）はそれを表示
+            if let post = post {
+                self.post = post
+            }
+            // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
+            else {
+                guard let post = MockDataSource.posts.first(where: { $0.id == postId }) else { return }
+                self.post = post
+            }
+        }
     }
     
     var descriptionView: some View {
@@ -49,14 +65,14 @@ struct PostDetailView: View {
                     .resizable()
                     .frame(width: 40, height: 40)
                 VStack(alignment: .leading) {
-                    Text(post.user.name)
+                    Text(post?.userName ?? "")
                         .font(.system(size: 16, weight: .bold))
-                    Text(post.createdAt)
+                    Text(post?.createdAt ?? "")
                         .font(.system(size: 12))
                 }
             }
             Spacer().frame(height: 8)
-            Text(post.description)
+            Text(post?.description ?? "")
                 .font(.system(size: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
             Spacer().frame(height: 8)
@@ -65,7 +81,7 @@ struct PostDetailView: View {
     
     var rightButtonsView: some View {
         VStack(spacing: 20) {
-            rightCountButton(imageName: "heart", count: post.likesCount) {
+            rightCountButton(imageName: "heart", count: post?.likesCount ?? 0) {
                 
             }
             rightCountButton(imageName: "ellipsis.bubble", count: 0) {
@@ -101,7 +117,5 @@ struct PostDetailView: View {
 }
 
 #Preview {
-    PostDetailView(
-        post: MockDataSource.posts.first!
-    )
+    PostDetailView(postId: 0)
 }

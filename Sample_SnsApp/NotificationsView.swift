@@ -23,12 +23,12 @@ struct NotificationsView: View {
         }
     }
     
-    func listItem(notification: NotificationEntity) -> some View {
+    func listItem(notification: NotificationEntity) -> some View {        
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
-                NavigationLink(value: HomeNavigationItem.userProfile(notification.user)) {
+                NavigationLink(value: HomeNavigationItem.userProfile(userId: notification.userId)) {
                     NetworkImageView(
-                        url: notification.user.iconUrl,
+                        url: notification.userIconUrl ?? "",
                         placeHolderView: {
                             Image(systemName: "person.circle.fill")
                                 .resizable()
@@ -41,7 +41,7 @@ struct NotificationsView: View {
                 }
                 Spacer().frame(width: 8)
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("\(notification.user.name)から\(notification.title)")
+                    Text("\(notification.userName)から\(notification.title)")
                         .font(.system(size: 14, weight: .medium))
                         .foregroundStyle(Color(.label))
                     if let message = notification.message {
@@ -54,7 +54,7 @@ struct NotificationsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer().frame(width: 8)
                 NetworkImageView(
-                    url: notification.user.iconUrl,
+                    url: notification.postImageUrl,
                     placeHolderView: {
                         Image(systemName: "photo")
                             .resizable()

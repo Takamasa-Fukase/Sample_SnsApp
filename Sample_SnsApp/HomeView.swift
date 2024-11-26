@@ -9,8 +9,8 @@ import SwiftUI
 
 enum HomeNavigationItem: Hashable {
     case notifications
-    case userProfile(User)
-    case postDetail(Post)
+    case userProfile(userId: Int)
+    case postDetail(postId: Int)
 }
 
 struct HomeView: View {
@@ -68,10 +68,10 @@ struct HomeView: View {
                         switch item {
                         case .notifications:
                             NotificationsView()
-                        case .userProfile(let user):
-                            UserProfileView(userId: user.id)
-                        case .postDetail(let post):
-                            PostDetailView(post: post)
+                        case .userProfile(let userId):
+                            UserProfileView(userId: userId)
+                        case .postDetail(let postId):
+                            PostDetailView(postId: postId)
                         }
                     }
                 }
@@ -138,7 +138,7 @@ struct HomeView: View {
         ) {
             LazyVStack(spacing: 0, content: {
                 ForEach(posts) { post in
-                    PostDetailView(post: post)
+                    PostDetailView(postId: post.id, post: post)
                         .frame(width: geometry.size.width,
                                height: geometry.size.height)
                 }
