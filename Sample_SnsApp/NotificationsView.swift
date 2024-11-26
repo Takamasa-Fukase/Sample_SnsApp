@@ -26,6 +26,7 @@ struct NotificationsView: View {
     func listItem(notification: NotificationEntity) -> some View {        
         VStack(spacing: 0) {
             HStack(alignment: .top, spacing: 0) {
+                // ユーザー詳細への遷移トリガー
                 NavigationLink(value: HomeNavigationItem.userProfile(userId: notification.userId)) {
                     NetworkImageView(
                         url: notification.userIconUrl ?? "",
@@ -39,7 +40,9 @@ struct NotificationsView: View {
                     .frame(width: 48, height: 48)
                     .clipShape(Circle())
                 }
+                
                 Spacer().frame(width: 8)
+                
                 VStack(alignment: .leading, spacing: 0) {
                     Text("\(notification.userName)から\(notification.title)")
                         .font(.system(size: 14, weight: .medium))
@@ -52,18 +55,23 @@ struct NotificationsView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
+                
                 Spacer().frame(width: 8)
-                NetworkImageView(
-                    url: notification.postImageUrl,
-                    placeHolderView: {
-                        Image(systemName: "photo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    },
-                    contentMode: .fill
-                )
-                .frame(width: 30, height: 53)
-                .clipped()
+                
+                // 投稿詳細への遷移トリガー
+                NavigationLink(value: HomeNavigationItem.postDetail(postId: notification.postId)) {
+                    NetworkImageView(
+                        url: notification.postImageUrl,
+                        placeHolderView: {
+                            Image(systemName: "photo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        },
+                        contentMode: .fill
+                    )
+                    .frame(width: 30, height: 53)
+                    .clipped()
+                }
             }
             .padding(EdgeInsets(top: 16, leading: 16, bottom: 8, trailing: 16))
             Color(.label)

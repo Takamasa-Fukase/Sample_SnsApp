@@ -14,5 +14,6 @@ struct NotificationEntity: Identifiable, Hashable {
     let userIconUrl: String?
     let title: String
     let message: String?
+    let postId: Int
     let postImageUrl: String
 }

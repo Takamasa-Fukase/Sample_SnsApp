@@ -79,39 +79,52 @@ struct MockDataSource {
     ]
     
     static let notifications: [NotificationEntity] = Array(0..<15).map { index in
+        var userId: Int = 0
         var userName = ""
         var userIconUrl = ""
+        var postId: Int = 0
         var postImageUrl = ""
         
         switch index % 4 {
         case 0:
+            userId = MockDataSource.users[0].id
             userName = MockDataSource.users[0].name
             userIconUrl = MockDataSource.users[0].iconUrl
+            postId = MockDataSource.posts[0].id
             postImageUrl = MockDataSource.posts[0].postImageUrl
         case 1:
+            userId = MockDataSource.users[1].id
             userName = MockDataSource.users[1].name
             userIconUrl = MockDataSource.users[1].iconUrl
+            postId = MockDataSource.posts[1].id
             postImageUrl = MockDataSource.posts[1].postImageUrl
         case 2:
+            userId = MockDataSource.users[2].id
             userName = MockDataSource.users[2].name
             userIconUrl = MockDataSource.users[2].iconUrl
+            postId = MockDataSource.posts[2].id
             postImageUrl = MockDataSource.posts[2].postImageUrl
         case 3:
+            userId = MockDataSource.users[3].id
             userName = MockDataSource.users[3].name
             userIconUrl = MockDataSource.users[3].iconUrl
+            postId = MockDataSource.posts[3].id
             postImageUrl = MockDataSource.posts[3].postImageUrl
         default:
+            userId = MockDataSource.users[0].id
             userName = MockDataSource.users[0].name
             userIconUrl = MockDataSource.users[0].iconUrl
+            postId = MockDataSource.posts[0].id
             postImageUrl = MockDataSource.posts[0].postImageUrl
         }
         return .init(
             id: index,
-            userId: index,
+            userId: userId,
             userName: userName,
             userIconUrl: userIconUrl,
             title: "コメントをもらいました",
             message: "いいですね！！！",
+            postId: postId,
             postImageUrl: postImageUrl
         )
     }
