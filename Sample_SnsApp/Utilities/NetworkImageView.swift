@@ -11,11 +11,14 @@ final class NetworkImageViewState: ObservableObject {
     @Published var fetchedImage: UIImage?
     
     init(url: String) {
-        Task { @MainActor in
+        Task {
             do {
                 guard let url = URL(string: url) else { return }
                 let image = try await getImage(from: url)
-                DispatchQueue.main.async {
+                
+                // UIの更新を発火させるpublishingのみメインスレッドで実行
+                // MEMO: この書き方をすれば、わざわざ個別のメソッドに切り出してMainActorを付与しなくて済む
+                await MainActor.run {
                     self.fetchedImage = image
                 }
                 
