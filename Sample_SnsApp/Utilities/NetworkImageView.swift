@@ -41,7 +41,7 @@ struct NetworkImageView<PlaceHolderView: View>: View {
     private let contentMode: ContentMode
         
     init(
-        state: NetworkImageViewState = .init(url: ""),
+        state: NetworkImageViewState,
         @ViewBuilder placeHolderView: () -> PlaceHolderView,
         contentMode: ContentMode
     ) {
