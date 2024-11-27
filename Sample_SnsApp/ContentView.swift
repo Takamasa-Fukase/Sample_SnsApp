@@ -18,10 +18,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTabIndex) {
             Group {
-                HomeView(
-                    recommendedPosts: MockDataSource.posts,
-                    followingPosts: MockDataSource.posts.reversed()
-                )
+                HomeView()
                     .tabItem {
                         Label("Home", systemImage: selectedTabIndex == 0 ? "house.fill" : "house")
                             .environment(\.symbolVariants, .none)

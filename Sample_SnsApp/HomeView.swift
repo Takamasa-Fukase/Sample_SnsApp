@@ -14,18 +14,10 @@ enum HomeNavigationItem: Hashable {
 }
 
 struct HomeView: View {
-    let recommendedPosts: [Post]
-    let followingPosts: [Post]
+    @State private var recommendedPosts = [Post]()
+    @State private var followingPosts = [Post]()
     @State private var topTabButtonAlpha: (recommendedButtonAlpha: CGFloat, followingButtonAlpha: CGFloat) = (0.0, 0.0)
     @State private var path = [HomeNavigationItem]()
-    
-    init(
-        recommendedPosts: [Post], 
-        followingPosts: [Post]
-    ) {
-        self.recommendedPosts = recommendedPosts
-        self.followingPosts = followingPosts
-    }
     
     var body: some View {
         NavigationStack(path: $path) {
@@ -64,13 +56,19 @@ struct HomeView: View {
                             }
                         )
                     }
+                    // MARK: 遷移先の登録
                     .navigationDestination(for: HomeNavigationItem.self) { item in
                         switch item {
                         case .notifications:
+                            // 通知一覧への遷移
                             NotificationsView()
+                            
                         case .userProfile(let userId):
+                            // ユーザー詳細への遷移
                             UserProfileView(userId: userId)
+                            
                         case .postDetail(let postId):
+                            // 投稿詳細への遷移
                             PostDetailView(postId: postId)
                         }
                     }
@@ -79,6 +77,18 @@ struct HomeView: View {
             .ignoresSafeArea(edges: [.top])
         }
         .tint(Color(.label))
+        .task {
+            do {
+                // デバッグ用の遅延処理
+                try await Task.sleep(nanoseconds: 1500000000)
+             
+                recommendedPosts = MockDataSource.posts
+                followingPosts = MockDataSource.posts.reversed()
+                
+            }catch {
+                print("error: \(error)")
+            }
+        }
         .onWillAppear {
             let naviBarAppearance = UINavigationBarAppearance()
             naviBarAppearance.configureWithTransparentBackground()
@@ -157,5 +167,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(recommendedPosts: MockDataSource.posts, followingPosts: MockDataSource.posts.reversed())
+    HomeView()
 }

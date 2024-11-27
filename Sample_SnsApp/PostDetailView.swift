@@ -17,6 +17,7 @@ struct PostDetailView: View {
     ) {
         self.postId = postId
         self.post = post
+        print("PostDetailView init self.post: \(self.post)")
     }
     
     var body: some View {
@@ -47,24 +48,27 @@ struct PostDetailView: View {
         }
         // postEntityが取得されるまでの間、スケルトン表示をする
         .redacted(reason: post == nil ? .placeholder : [])
-        .onAppear {
-            Task {
-                do {
+        .task {
+            do {
+                // PostEntityが受け渡されている場合（投稿一覧）はそれを表示
+                if let post = post {
+                    print("PostEntityが受け渡されている場合（投稿一覧）はそれを表示")
+                    self.post = post
+                }
+                // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
+                else {
+                    print("＜遅延処理＞PostEntityが受け渡されていない場合はpostIdを使って取得して表示")
                     // デバッグ用の遅延処理
                     try await Task.sleep(nanoseconds: 1500000000)
+                    print("遅延処理完了")
                     
-                    // PostEntityが受け渡されている場合（投稿一覧）はそれを表示
-                    if let post = post {
-                        self.post = post
-                    }
-                    // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
-                    else {
-                        guard let post = MockDataSource.posts.first(where: { $0.id == postId }) else { return }
-                        self.post = post
-                    }
-                }catch {
-                    print("error: \(error)")
+                    guard let post = MockDataSource.posts.first(where: { $0.id == postId }) else { return }
+                    print("取得完了")
+                    self.post = post
+                    print("代入完了")
                 }
+            }catch {
+                print("error: \(error)")
             }
         }
     }
