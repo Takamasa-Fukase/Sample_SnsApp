@@ -16,8 +16,10 @@ struct PostDetailView: View {
         post: Post? = nil
     ) {
         self.postId = postId
-        self.post = post
-        print("PostDetailView init self.post: \(self.post)")
+        
+        // MEMO: @Stateの初期化では直接値を入れても無視されるので専用の書き方をする必要がある
+        // self.post = post これだと無視される
+        self._post = State(initialValue: post)
     }
     
     var body: some View {
@@ -55,6 +57,7 @@ struct PostDetailView: View {
                     print("PostEntityが受け渡されている場合（投稿一覧）はそれを表示")
                     self.post = post
                 }
+                
                 // PostEntityが受け渡されていない場合はpostIdを使って取得して表示
                 else {
                     print("＜遅延処理＞PostEntityが受け渡されていない場合はpostIdを使って取得して表示")
